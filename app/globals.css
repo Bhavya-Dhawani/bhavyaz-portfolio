@@ -1,42 +1,165 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 🎨 Backgrounds */
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+
+  /* ✨ Accent Colors */
+  --accent-primary: #1E90FF;
+  --accent-secondary: #9B59B6;
+
+  /* 📝 Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --text-muted: #7A7A7A;
+
+  /* 🖌 Fonts */
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+
+  /* 🔹 Border Radius */
+  --radius-small: 6px;
+  --radius-medium: 12px;
+  --radius-large: 20px;
+
+  /* ⚡ Transition */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-medium: 0.4s ease-in-out;
+  --transition-slow: 0.7s ease-in-out;
+
+  /* 🖼 Background gradients */
+  --gradient-primary: linear-gradient(135deg, #1E90FF, #9B59B6);
+
+  /* 💬 Responsive Font Sizes */
+  --font-xs: clamp(0.75rem, 0.7rem + 0.3vw, 0.85rem);
+  /* 12–14px */
+  --font-sm: clamp(0.875rem, 0.8rem + 0.3vw, 0.95rem);
+  /* 14–15px */
+  --font-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  /* 16–18px */
+  --font-lg: clamp(1.125rem, 1rem + 0.8vw, 1.25rem);
+  /* 18–20px */
+  --font-xl: clamp(1.25rem, 1.1rem + 1vw, 1.5rem);
+  /* 20–24px */
+  --font-2xl: clamp(1.5rem, 1.3rem + 1.2vw, 2rem);
+  /* 24–32px */
+  --font-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+  /* 30–40px */
+  --font-4xl: clamp(2.25rem, 1.8rem + 2vw, 3rem);
+  /* 36–48px */
+  --font-5xl: clamp(3rem, 2.5rem + 3vw, 4rem);
+  /* 48–64px */
+
+  /* 🏷 Line heights for readability */
+  --line-tight: 1.2;
+  --line-normal: 1.5;
+  --line-relaxed: 1.75;
+
+  /* 🏗 Font families */
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+/* Global resets */
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  background-color: var(--bg-primary);
+  font-size: var(--font-body);
+  transition: background-color var(--transition-medium);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Headings */
+h1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-h1);
+}
+
+h2 {
+  font-family: var(--font-primary);
+  font-size: var(--font-h2);
+}
+
+h3 {
+  font-family: var(--font-primary);
+  font-size: var(--font-h3);
+}
+
+/* Small text */
+small,
+.small-text {
+  font-size: var(--font-small);
+  color: var(--text-muted);
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
+}
+
+button:hover {
+  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
+  transform: scale(1.05);
+  background: var(--gradient-primary);
+}
+
+/* Landing Page Styles */
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--bg-primary);
+}
+
+.landing-content h1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-h1);
+  margin-bottom: 1rem;
+  color: var(--accent-primary);
+}
+
+.landing-content h2 {
+  font-family: var(--font-primary);
+  font-size: var(--font-h2);
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  font-size: var(--font-body);
+  transition: all var(--transition-fast);
+}
+
+.btn:hover {
+  background: var(--gradient-primary);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
 }
