@@ -29,6 +29,9 @@
   /* 🖼 Background gradients */
   --gradient-primary: linear-gradient(135deg, #1E90FF, #9B59B6);
 
+  /* shadow gradients  */
+  --shadow-gradient: rgba(155, 89, 182, 0.3);
+
   /* 💬 Responsive Font Sizes */
   --font-xs: clamp(0.75rem, 0.7rem + 0.3vw, 0.85rem);
   /* 12–14px */
@@ -99,7 +102,7 @@ small,
 }
 
 /* Buttons */
-button {
+/* button {
   background-color: var(--accent-primary);
   color: var(--text-primary);
   border: none;
@@ -108,16 +111,16 @@ button {
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
-}
+} */
 
-button:hover {
+/* button:hover {
   box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
   transform: scale(1.05);
   background: var(--gradient-primary);
-}
+} */
 
 /* Landing Page Styles */
-.landing-page {
+/* .landing-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,29 +128,29 @@ button:hover {
   text-align: center;
   padding: 1rem;
   background-color: var(--bg-primary);
-}
+} */
 
-.landing-content h1 {
+/* .landing-content h1 {
   font-family: var(--font-primary);
   font-size: var(--font-h1);
   margin-bottom: 1rem;
   color: var(--accent-primary);
-}
+} */
 
-.landing-content h2 {
+/* .landing-content h2 {
   font-family: var(--font-primary);
   font-size: var(--font-h2);
   margin-bottom: 2rem;
   color: var(--text-secondary);
-}
+} */
 
-.btn-group {
+/* .btn-group {
   display: flex;
   justify-content: center;
   gap: 1rem;
-}
+} */
 
-.btn {
+/* .btn {
   background-color: var(--accent-primary);
   color: var(--text-primary);
   padding: 0.8rem 1.5rem;
@@ -156,10 +159,10 @@ button:hover {
   cursor: pointer;
   font-size: var(--font-body);
   transition: all var(--transition-fast);
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
   background: var(--gradient-primary);
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
-}
+} */
