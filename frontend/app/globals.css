@@ -31,26 +31,34 @@
 
   /* shadow gradients  */
   --shadow-gradient: rgba(155, 89, 182, 0.3);
+  --shadow-secondary: rgba(0, 0, 0, 0.3);
 
-  /* 💬 Responsive Font Sizes */
-  --font-xs: clamp(0.75rem, 0.7rem + 0.3vw, 0.85rem);
-  /* 12–14px */
-  --font-sm: clamp(0.875rem, 0.8rem + 0.3vw, 0.95rem);
-  /* 14–15px */
-  --font-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-  /* 16–18px */
-  --font-lg: clamp(1.125rem, 1rem + 0.8vw, 1.25rem);
-  /* 18–20px */
-  --font-xl: clamp(1.25rem, 1.1rem + 1vw, 1.5rem);
-  /* 20–24px */
-  --font-2xl: clamp(1.5rem, 1.3rem + 1.2vw, 2rem);
-  /* 24–32px */
-  --font-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
-  /* 30–40px */
-  --font-4xl: clamp(2.25rem, 1.8rem + 2vw, 3rem);
-  /* 36–48px */
-  --font-5xl: clamp(3rem, 2.5rem + 3vw, 4rem);
-  /* 48–64px */
+  --font-xs: clamp(0.8rem, 0.6rem + 0.8vw, 1.25rem);
+  /* 13–20px */
+
+  --font-sm: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  /* 16–24px */
+
+  --font-base: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  /* 20–32px */
+
+  --font-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  /* 24–40px */
+
+  --font-xl: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  /* 32–56px */
+
+  --font-2xl: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  /* 40–72px */
+
+  --font-3xl: clamp(3rem, 2.2rem + 3vw, 5.5rem);
+  /* 48–88px */
+
+  --font-4xl: clamp(3.5rem, 2.5rem + 3.5vw, 7rem);
+  /* 56–112px */
+
+  --font-5xl: clamp(4rem, 3rem + 4vw, 9rem);
+  /* 64–144px */
 
   /* 🏷 Line heights for readability */
   --line-tight: 1.2;
@@ -58,9 +66,15 @@
   --line-relaxed: 1.75;
 
   /* 🏗 Font families */
-  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-serif: 'Merriweather', Georgia, serif;
-  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Inter',
+    'Segoe UI',
+    system-ui,
+    sans-serif;
+  --font-serif: 'Merriweather',
+    Georgia,
+    serif;
+  --font-mono: 'Fira Code',
+    monospace;
 }
 
 /* Global resets */
