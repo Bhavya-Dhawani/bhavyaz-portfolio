@@ -8,6 +8,12 @@
 }
 
 .LandingAnimation {
-    width: 50%;
+    width: 100vw;
     height: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .LandingAnimation {
+        width: 100vw;
+    }
 }

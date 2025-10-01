@@ -6,9 +6,11 @@ import Spline from '@splinetool/react-spline';
 const Hero = () => {
     return (
         <div className={style.hero}>
-            <Spline className={style.LandingAnimation}
-                scene="https://prod.spline.design/i3Zt0Nkb5rl3ox3U/scene.splinecode"
-            />
+            <div className={style.LandingAnimation}>
+                <Spline
+                    scene="https://prod.spline.design/i3Zt0Nkb5rl3ox3U/scene.splinecode" style={{ pointerEvents: 'none' }}
+                />
+            </div>
         </div>
     )
 }
