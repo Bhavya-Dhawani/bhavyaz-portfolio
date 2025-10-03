@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import style from '@/css/components/globals/Navbar.module.css';
 import { usePathname } from 'next/navigation';
+import PageTransition from '@/helpers/PageTransition';
 
 const Navbar = () => {
 
@@ -10,19 +11,19 @@ const Navbar = () => {
 
     const routes = [
         {
-            name: "Home", route: '/', hover: 'Home'
+            name: "Home", route: '/',
         },
         {
-            name: "About", route: '/about', hover: 'About'
+            name: "About", route: '/about',
         },
         {
-            name: "Contact", route: '/contact', hover: 'Contact'
+            name: "Contact", route: '/contact',
         },
         {
-            name: "Work", route: '/work', hover: 'Work'
+            name: "Work", route: '/work',
         },
         {
-            name: "Login / Signup", route: '/login', hover: 'Login / Signup'
+            name: "Login / Signup", route: '/loginsignup',
         },
     ];
 
@@ -33,7 +34,7 @@ const Navbar = () => {
                 {
                     routes.map((route, i) => {
                         return (
-                            <div key={i} className={`${style.link} ${route.route == path ? style.active : ""}`}> {route.name} </div>
+                            <PageTransition key={i} href={route.route} pageName={route.name} setMenu={setOpen} className={`${style.link} ${route.route == path ? style.active : ""}`}> {route.name} </PageTransition>
                         )
                     })
                 }

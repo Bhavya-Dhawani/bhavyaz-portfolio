@@ -28,6 +28,7 @@
 
   /* 🖼 Background gradients */
   --gradient-primary: linear-gradient(135deg, #1E90FF, #9B59B6);
+  --gradient-secondary: linear-gradient(135deg, #0A2A43, #3B1E4F);
 
   /* shadow gradients  */
   --shadow-gradient: rgba(155, 89, 182, 0.3);
@@ -91,6 +92,65 @@ body {
   background-color: var(--bg-primary);
   overflow-x: hidden;
 }
+
+body.close {
+  width: 15px;
+  overflow: hidden;
+  height: 12px;
+}
+
+#transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--text-primary);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(-150%);
+}
+
+/* entry from bottom */
+#transition.enter-bottom {
+  transform: translateY(150%);
+}
+
+#transition.enter-bottom.transition-in {
+  transform: translateY(0);
+}
+
+#transition.enter-bottom.transition-out {
+  transform: translateY(-150%);
+}
+
+/* entry from top */
+#transition.enter-top {
+  transform: translateY(-150%);
+}
+
+#transition.enter-top.transition-in {
+  transform: translateY(0);
+}
+
+#transition.enter-top.transition-out {
+  transform: translateY(150%);
+}
+
+#transition-text {
+  color: var(--secondary-colour-light);
+  display: none;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+
 
 /* Buttons */
 /* button {

@@ -38,7 +38,7 @@ const Hero = () => {
             </div>
 
             <div className={style.photo}>
-                <Image src={MyImg} alt='My Image'></Image>
+                <Image src={MyImg} className={style.img} alt='My Image'></Image>
             </div>
 
         </div>

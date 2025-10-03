@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <PageTransition></PageTransition>
+        <div id="transition">
+          <span id="transition-text"></span>
+        </div>
         {children}
       </body>
     </html>

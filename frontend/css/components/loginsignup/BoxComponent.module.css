@@ -1,0 +1,36 @@
+.box {
+    background: var(--text-primary);
+    width: max-content;
+    padding: 32px;
+    margin: 10px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px var(--shadow-secondary);
+    overflow: hidden;
+    transition: height, padding 1s ease;
+}
+
+.box.close {
+    height: 2px;
+    padding: 0;
+    animation: rotateOnce 3s ease-in-out 1;
+}
+
+@media screen and (max-width: 512px) {
+    .box {
+        padding: 16px;
+    }
+}
+
+@keyframes rotateOnce {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

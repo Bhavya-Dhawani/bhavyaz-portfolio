@@ -49,6 +49,7 @@
     overflow: hidden;
     box-shadow: 0 4px 15px var(--shadow-gradient);
     border: 4px solid var(--accent-primary);
+    aspect-ratio: 1 / 1;
 }
 
 .photo :global(img) {
@@ -116,7 +117,7 @@
 
     .photo {
         padding: 16px;
-        width: 70vw;
+        width: 50vw;
     }
 }
 
