@@ -74,7 +74,7 @@ const OtpPopup = ({ display, onClose, onOtpError, onResendSuccess }) => {
                 if (err.status == 400) {
                     onOtpError("Invalid or Expired Token");
                 }else {
-                    onOtpError(err.data.message);
+                    onOtpError(err.response.data.message);
                 }
             });
     };
@@ -95,7 +95,7 @@ const OtpPopup = ({ display, onClose, onOtpError, onResendSuccess }) => {
                 }
             })
             .catch((err) => {
-                onOtpError(err.data.message);
+                onOtpError(err.response.data.message);
             });
 
         setTimer(60);

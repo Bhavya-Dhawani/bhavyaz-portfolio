@@ -55,7 +55,7 @@ const Navbar = () => {
                 }
             })
             .catch((err) => {
-                onOtpError(err.data.message);
+                onOtpError(err.response.data.message);
             });
 
     }

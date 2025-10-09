@@ -67,7 +67,7 @@ const LoginComponent = ({ ChangeForm }) => {
       })
       .catch(async (err) => {
         setType("Error");
-        setMessage(err.data.message);
+        setMessage(err.response.data.message);
         setDisplay(true);
         await sleep(3000);
         setDisplay(false);
