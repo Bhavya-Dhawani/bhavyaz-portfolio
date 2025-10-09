@@ -5,14 +5,24 @@ import { FaEnvelope } from "react-icons/fa";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import Input from '@/ui/Input';
 import OptionComponent from './OptionComponent';
+import Toast from '@/ui/Toast';
+import axios from 'axios';
+import { useUser } from '@/helpers/UserContext';
+import { useRouter } from 'next/navigation';
+import sleep from '@/utils/sleep';
 
-const LoginComponent = ({ChangeForm}) => {
+const LoginComponent = ({ ChangeForm }) => {
 
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [passwordType, setPasswordType] = useState('password');
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
+  const [display, setDisplay] = useState(false);
+  const [type, setType] = useState("");
+  const [message, setMessage] = useState("");
+  const { setUser } = useUser();
+  const router = useRouter();
 
   const validateLogin = () => {
     let isValid = true;
@@ -38,13 +48,38 @@ const LoginComponent = ({ChangeForm}) => {
       setPasswordError("");
     }
 
-    return isValid;
+    console.log(isValid)
+    if (!isValid) return;
+
+    axios.post('/api/auth/login', { email: emailLogin, password: passwordLogin }, { withCredentials: true })
+      .then(async (res) => {
+        if (res.data.success) {
+          setType("Success");
+          setMessage("User logged in successfully");
+          setDisplay(true);
+          setUser(res.data.data.user);
+          await sleep(3000);
+          setDisplay(false);
+          setMessage("");
+          setType("");
+          router.push('/');
+        }
+      })
+      .catch(async (err) => {
+        setType("Error");
+        setMessage(err.data.message);
+        setDisplay(true);
+        await sleep(3000);
+        setDisplay(false);
+        setMessage("");
+        setType("");
+      })
   };
 
 
   const loginInputs = [
     {
-      name: "Email", icon: <FaEnvelope />, type: "email", placeHolder: "Jos Buttler", value: emailLogin, onChange: setEmailLogin, errorMsg: emailError
+      name: "Email", icon: <FaEnvelope />, type: "email", placeHolder: "josbuttler@gmai.com", value: emailLogin, onChange: setEmailLogin, errorMsg: emailError
     },
     {
       name: "Password", icon: <TbPasswordFingerprint />, type: passwordType, placeHolder: "*****", value: passwordLogin, onChange: setPasswordLogin, errorMsg: passwordError
@@ -74,11 +109,12 @@ const LoginComponent = ({ChangeForm}) => {
       </div>
 
       <div className={style.change}>Don't have a account? <button className={style.btn} onClick={() => ChangeForm("signup")}>signup</button></div>
-      
+
       <hr className={style.hr} />
 
       <OptionComponent></OptionComponent>
 
+      <Toast type={type} Message={message} display={display}></Toast>
     </div>
   )
 }

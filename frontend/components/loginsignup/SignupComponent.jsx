@@ -6,8 +6,14 @@ import { FaEnvelope } from "react-icons/fa";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import Input from '@/ui/Input';
 import OptionComponent from './OptionComponent';
+import Toast from '@/ui/Toast';
+import axios from 'axios';
+import sleep from '@/utils/sleep';
+import { useUser } from '@/helpers/UserContext';
+import OtpPopup from '@/helpers/OtpPopup';
+import { useRouter } from 'next/navigation';
 
-const SignupComponent = ({ChangeForm}) => {
+const SignupComponent = ({ ChangeForm }) => {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,6 +24,12 @@ const SignupComponent = ({ChangeForm}) => {
   const [phoneError, setPhoneError] = useState();
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
+  const [display, setDisplay] = useState(false);
+  const [type, setType] = useState("");
+  const [message, setMessage] = useState("");
+  const { user, setUser, url } = useUser();
+  const [otpDisplay, setOtpDisplay] = useState(false);
+  const router = useRouter();
 
 
   const SignupInputs = [
@@ -25,7 +37,7 @@ const SignupComponent = ({ChangeForm}) => {
       name: "Name", icon: <FaEnvelope />, type: "text", placeHolder: "Jos Buttler", value: name, onChange: setName, errorMsg: nameError
     },
     {
-      name: "Email", icon: <FaEnvelope />, type: "number", placeHolder: "982491xxxx", value: phone, onChange: setPhone, errorMsg: phoneError
+      name: "Phone", icon: <FaEnvelope />, type: "number", placeHolder: "982491xxxx", value: phone, onChange: setPhone, errorMsg: phoneError
     },
     {
       name: "Email", icon: <FaEnvelope />, type: "email", placeHolder: "josbuttler@gamil.com", value: email, onChange: setEmail, errorMsg: emailError
@@ -35,7 +47,7 @@ const SignupComponent = ({ChangeForm}) => {
     },
   ];
 
-  const validate = () => {
+  const validate = async () => {
     let isValid = true;
 
     // Name validation
@@ -76,8 +88,85 @@ const SignupComponent = ({ChangeForm}) => {
       setPasswordError("");
     }
 
-    return isValid;
+    if (!isValid) return;
+
+    axios.post(`/api/auth/register`, {
+      name,
+      email,
+      phone,
+      password
+    }, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(async (res) => {
+        if (res.data.success) {
+          setType("Info");
+          setMessage("Otp Sent for Verfication");
+          setDisplay(true);
+          setOtpDisplay(true);
+          await sleep(3000);
+          setDisplay(false);
+          setMessage("");
+          setType("");
+        }
+      })
+      .catch(async (err) => {
+        if (err.status == 400) {
+          setType("Info");
+          setMessage("User already Exists");
+          setDisplay(true);
+          await sleep(3000);
+          setDisplay(false);
+          setMessage("");
+          setType("");
+        } else {
+          console.log(err)
+          setType("Error");
+          setMessage(err.data.message);
+          setDisplay(true);
+          await sleep(3000);
+          setDisplay(false);
+          setMessage("");
+          setType("");
+        }
+      })
+
   };
+
+  const onOtpSuccess = async () => {
+    setOtpDisplay(false);
+    setType("Success");
+    setMessage("User Registered Successfully");
+    setDisplay(true);
+    await sleep(3000);
+    setDisplay(false);
+    setMessage("");
+    setType("");
+    router.push('/');
+  }
+
+  const onOtpError = async (message) => {
+    setType("Error");
+    setMessage(message);
+    setDisplay(true);
+    await sleep(3000);
+    setDisplay(false);
+    setMessage("");
+    setType("");
+  }
+
+  const onResendSuccess = async () => {
+    setType("Success");
+    setMessage("Otp resent Successfully");
+    setDisplay(true);
+    await sleep(3000);
+    setDisplay(false);
+    setMessage("");
+    setType("");
+  }
 
 
 
@@ -103,11 +192,14 @@ const SignupComponent = ({ChangeForm}) => {
         <button className={style.btn}> Need Help? </button>
       </div>
 
-      <div className={style.change}>ALready have a Account? <button className={style.btn}  onClick={() => ChangeForm("login")}>Login</button></div>
-      
+      <div className={style.change}>ALready have a Account? <button className={style.btn} onClick={() => ChangeForm("login")}>Login</button></div>
+
       <hr className={style.hr} />
 
       <OptionComponent></OptionComponent>
+
+      <OtpPopup display={otpDisplay} onResendSuccess={onResendSuccess} onClose={onOtpSuccess} onOtpError={onOtpError}></OtpPopup>
+      <Toast type={type} Message={message} display={display}></Toast>
     </div>
   )
 }

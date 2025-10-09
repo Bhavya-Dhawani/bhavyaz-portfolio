@@ -12,6 +12,15 @@
   --text-secondary: #A0A0A0;
   --text-muted: #7A7A7A;
 
+  
+  /* 🖼 Background gradients */
+  --gradient-primary: linear-gradient(135deg, #1E90FF, #9B59B6);
+  --gradient-secondary: linear-gradient(135deg, #0A2A43, #3B1E4F);
+  
+  /* shadow gradients  */
+  --shadow-gradient: rgba(155, 89, 182, 0.3);
+  --shadow-secondary: rgba(0, 0, 0, 0.3);
+  
   /* 🖌 Fonts */
   --font-primary: 'Poppins', sans-serif;
   --font-secondary: 'Inter', sans-serif;
@@ -25,15 +34,7 @@
   --transition-fast: 0.2s ease-in-out;
   --transition-medium: 0.4s ease-in-out;
   --transition-slow: 0.7s ease-in-out;
-
-  /* 🖼 Background gradients */
-  --gradient-primary: linear-gradient(135deg, #1E90FF, #9B59B6);
-  --gradient-secondary: linear-gradient(135deg, #0A2A43, #3B1E4F);
-
-  /* shadow gradients  */
-  --shadow-gradient: rgba(155, 89, 182, 0.3);
-  --shadow-secondary: rgba(0, 0, 0, 0.3);
-
+  
   --font-xs: clamp(0.8rem, 0.6rem + 0.8vw, 1.25rem);
   /* 13–20px */
 
