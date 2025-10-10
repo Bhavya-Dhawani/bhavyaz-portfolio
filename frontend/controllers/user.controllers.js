@@ -280,14 +280,14 @@ export async function handleForgotPassword(req) {
 
     await newToken.save();
 
-    const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+    const resetUrl = `${process.env.SERVER_URL}/reset-password/${resetToken}`;
     await sendForgotPasswordEmail(email, resetUrl);
 
     const resData = {
         success: true,
         message: "Reset Password Link sent successfully.",
     }
-    return NextResponse.json(resData, { status: 200 })
+    return NextResponse.json(resData, { status: 200 });
     // res.status(200).json({
     //     success: true,
     //     message: "Reset Password Link sent successfully.",
@@ -295,8 +295,8 @@ export async function handleForgotPassword(req) {
 }
 
 // ---------------- RESET PASSWORD ----------------
-export async function handleResetPassword(req) {
-    const { resetToken } = req.params;
+export async function handleResetPassword(req, { params }) {
+    const resetToken = params.token;
     const { password } = await req.json();
 
     const token = await Token.findOne({ value: resetToken });
@@ -325,9 +325,12 @@ export async function handleResetPassword(req) {
 
 // ---------------- GOOGLE AUTH ----------------
 export async function handleGoogleAuth(req) {
-    const code = req.query.code;
+    const code = req.nextUrl.searchParams.get("code");
 
     try {
+        if (!code) throw new ExpressError(400, "Missing Google authorization code.");
+
+        // Exchange code for Google tokens
         const obj = await getGoogleOAuthTokens(code);
         const googleUser = jwt.decode(obj.id_token);
 
@@ -335,11 +338,13 @@ export async function handleGoogleAuth(req) {
             throw new ExpressError(400, "Unable to get user info from Google.");
         }
 
+        // Check if user already exists
         let user = await User.findOne({
             $or: [{ googleId: googleUser.sub }, { email: googleUser.email }],
         });
 
         if (!user) {
+            // Register a new Google user
             user = new User({
                 name: googleUser.name || googleUser.email,
                 email: googleUser.email,
@@ -350,15 +355,27 @@ export async function handleGoogleAuth(req) {
             await user.save();
             await sendWelcomeEmail(user.email, user.name);
         } else if (!user.googleId) {
+            // Link Google account to existing user
             user.isVerified = true;
             user.googleId = googleUser.sub;
             await user.save();
         }
 
-        generateAndSetJWT(user._id);
-        return NextResponse.redirect(process.env.CLIENT_URL);
+        // Generate JWT and set in cookie
+        const token = await generateAndSetJWT(user._id);
+        const response = NextResponse.redirect(process.env.CLIENT_URL);
+
+        response.cookies.set("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+            maxAge: 7 * 24 * 60 * 60, // 7 days
+        });
+
+        return response;
     } catch (err) {
-        console.error(`Google Auth error : ${err}`);
+        console.error("Google Auth error:", err.message);
         return NextResponse.redirect(process.env.CLIENT_URL);
     }
 }

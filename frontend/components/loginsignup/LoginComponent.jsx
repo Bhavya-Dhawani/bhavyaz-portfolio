@@ -48,7 +48,6 @@ const LoginComponent = ({ ChangeForm }) => {
       setPasswordError("");
     }
 
-    console.log(isValid)
     if (!isValid) return;
 
     axios.post('/api/auth/login', { email: emailLogin, password: passwordLogin }, { withCredentials: true })
@@ -75,6 +74,54 @@ const LoginComponent = ({ ChangeForm }) => {
         setType("");
       })
   };
+
+  const handlForgotPassword = async () => {
+
+    let isValid = true;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailLogin)) {
+      setEmailError("Enter a valid email address");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (!isValid) {
+      setType("Error");
+      setDisplay(true);
+      setMessage("Please Enter the email and then click forgot password");
+      await sleep(3000);
+      setType("");
+      setDisplay(false);
+      setMessage("");
+      return;
+    }
+
+    axios.post('/api/auth/forgot-password',{email: emailLogin},{withCredentials: true})
+    .then(async (res) => {
+      if (res.data.success) {
+        setType("Success");
+        setMessage("Reset Password link Sent to you");
+        setDisplay(true);
+        await sleep(3000);
+        setDisplay(false);
+        setType("");
+        setMessage("");
+        // router.push('/')
+      }
+    })
+    .catch(async (err) => {
+      setType("Error");
+      setDisplay(true);
+      setMessage(err.response.data.message);
+      await sleep(3000);
+      setType("");
+      setDisplay(false);
+      setMessage("");
+      return;
+    })
+  }
 
 
   const loginInputs = [
@@ -104,7 +151,7 @@ const LoginComponent = ({ ChangeForm }) => {
       <hr className={style.hr} />
 
       <div className={style.otherButtons}>
-        <button className={style.btn}>Forgot Password?</button>
+        <button onClick={handlForgotPassword} className={style.btn}>Forgot Password?</button>
         <button className={style.btn}> Need Help? </button>
       </div>
 
