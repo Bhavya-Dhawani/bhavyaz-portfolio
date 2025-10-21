@@ -39,7 +39,7 @@ const MainComponent = ({ token }) => {
                     setType("Success");
                     setMessage("Password reset Successfully");
                     setDisplay(true);
-                    await sleep(3000);
+                    await sleep(1000);
                     setDisplay(false);
                     setMessage("");
                     setType("");
@@ -51,7 +51,7 @@ const MainComponent = ({ token }) => {
                 setType("Error");
                 setMessage(err.response.data.message);
                 setDisplay(true);
-                await sleep(3000);
+                await sleep(1000);
                 setDisplay(false);
                 setMessage("");
                 setType("");

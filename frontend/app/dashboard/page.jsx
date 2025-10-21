@@ -26,7 +26,7 @@ const page = () => {
                 setType("Success");
                 setMessage(res.data.message);
                 setDisplay(true);
-                await sleep(3000);
+                await sleep(1000);
                 setUser(null)
                 setDisplay(false);
                 setMessage("");
@@ -37,7 +37,7 @@ const page = () => {
                 setType("Error");
                 setMessage(err.response.data.message);
                 setDisplay(true);
-                await sleep(3000);
+                await sleep(1000);
                 setDisplay(false);
                 setMessage("");
                 setType("");

@@ -64,7 +64,7 @@ const Navbar = () => {
         setType("Success");
         setMessage("Otp resent Successfully");
         setDisplay(true);
-        await sleep(3000);
+        await sleep(1000);
         setDisplay(false);
         setMessage("");
         setType("");
@@ -75,7 +75,7 @@ const Navbar = () => {
         setType("Success");
         setMessage("User Registered Successfully");
         setDisplay(true);
-        await sleep(3000);
+        await sleep(1000);
         setDisplay(false);
         setMessage("");
         setType("");
@@ -85,7 +85,7 @@ const Navbar = () => {
         setType("Error");
         setMessage(message);
         setDisplay(true);
-        await sleep(3000);
+        await sleep(1000);
         setDisplay(false);
         setMessage("");
         setType("");

@@ -107,7 +107,7 @@ const SignupComponent = ({ ChangeForm }) => {
           setMessage("Otp Sent for Verfication");
           setDisplay(true);
           setOtpDisplay(true);
-          await sleep(3000);
+          await sleep(1000);
           setDisplay(false);
           setMessage("");
           setType("");
@@ -118,7 +118,7 @@ const SignupComponent = ({ ChangeForm }) => {
           setType("Info");
           setMessage("User already Exists");
           setDisplay(true);
-          await sleep(3000);
+          await sleep(1000);
           setDisplay(false);
           setMessage("");
           setType("");
@@ -127,7 +127,7 @@ const SignupComponent = ({ ChangeForm }) => {
           setType("Error");
           setMessage(err.response.data.message);
           setDisplay(true);
-          await sleep(3000);
+          await sleep(1000);
           setDisplay(false);
           setMessage("");
           setType("");
@@ -141,7 +141,7 @@ const SignupComponent = ({ ChangeForm }) => {
     setType("Success");
     setMessage("User Registered Successfully");
     setDisplay(true);
-    await sleep(3000);
+    await sleep(1000);
     setDisplay(false);
     setMessage("");
     setType("");
@@ -152,7 +152,7 @@ const SignupComponent = ({ ChangeForm }) => {
     setType("Error");
     setMessage(message);
     setDisplay(true);
-    await sleep(3000);
+    await sleep(1000);
     setDisplay(false);
     setMessage("");
     setType("");
@@ -162,7 +162,7 @@ const SignupComponent = ({ ChangeForm }) => {
     setType("Success");
     setMessage("Otp resent Successfully");
     setDisplay(true);
-    await sleep(3000);
+    await sleep(1000);
     setDisplay(false);
     setMessage("");
     setType("");

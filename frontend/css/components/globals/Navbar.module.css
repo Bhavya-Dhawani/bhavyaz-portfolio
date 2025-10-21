@@ -3,12 +3,12 @@
     display: flex;
     justify-content: space-between;
     padding: 32px;
-    /* border-bottom: 0.5px solid var(--text-secondary); */
     background: var(--bg-primary);
     position: sticky;
     top: 0;
     left: 0;
     box-shadow: 0 4px 15px var(--shadow-secondary);
+    z-index: 99;
 }
 
 .logo {
@@ -23,6 +23,7 @@
 
 .links {
     font-size: var(--font-xs);
+    background: var(--bg-primary);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -57,7 +57,7 @@ const LoginComponent = ({ ChangeForm }) => {
           setMessage("User logged in successfully");
           setDisplay(true);
           setUser(res.data.data.user);
-          await sleep(3000);
+          await sleep(1000);
           setDisplay(false);
           setMessage("");
           setType("");
@@ -68,7 +68,7 @@ const LoginComponent = ({ ChangeForm }) => {
         setType("Error");
         setMessage(err.response.data.message);
         setDisplay(true);
-        await sleep(3000);
+        await sleep(1000);
         setDisplay(false);
         setMessage("");
         setType("");
@@ -91,7 +91,7 @@ const LoginComponent = ({ ChangeForm }) => {
       setType("Error");
       setDisplay(true);
       setMessage("Please Enter the email and then click forgot password");
-      await sleep(3000);
+      await sleep(1000);
       setType("");
       setDisplay(false);
       setMessage("");
@@ -104,7 +104,7 @@ const LoginComponent = ({ ChangeForm }) => {
         setType("Success");
         setMessage("Reset Password link Sent to you");
         setDisplay(true);
-        await sleep(3000);
+        await sleep(1000);
         setDisplay(false);
         setType("");
         setMessage("");
@@ -115,7 +115,7 @@ const LoginComponent = ({ ChangeForm }) => {
       setType("Error");
       setDisplay(true);
       setMessage(err.response.data.message);
-      await sleep(3000);
+      await sleep(1000);
       setType("");
       setDisplay(false);
       setMessage("");

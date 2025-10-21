@@ -26,10 +26,14 @@ if (process.env.MODE == 'developement') {
 };
 
 import { connectDB } from "./config/db.config.js";
-connectDB();
+// connectDB();
 
 import { getUser } from './middlewares/auth.middlewares.js';
 app.use(getUser);
+
+app.get('/', (req, res) => {
+    res.json(['res',['req']])
+})
 
 // For Susta Up time robot.
 app.get('/api/ping', (req, res) => {
@@ -59,10 +63,6 @@ const errorHandler = (err, req, res, next) => {
 };
 
 app.use(errorHandler);
-
-app.get('/', (req, res) => {
-    res.json(['res'])
-})
 
 const PORT = process.env.PORT;
 app.listen(PORT, "0.0.0.0", () => {
