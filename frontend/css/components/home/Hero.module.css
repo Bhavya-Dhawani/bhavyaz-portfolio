@@ -120,6 +120,8 @@
     height: calc(100vh - 100px);
     position: relative;
     padding: 0.5rem;
+    min-height: 52rem;
+    overflow-x: hidden;
 }
 
 .hero h1 {
@@ -185,17 +187,22 @@
 @media screen and (max-width:1024px) {
     .hero {
         height: 80vh;
+        min-height: 756px;
     }
 
     .myImage {
-        width: auto;
-        height: 30%;
+        width: 55%;
+        height: auto;
     }
 }
 
 @media screen and (max-width:940px) {
     .hero h1 {
         font-size: clamp(50px, calc(8vw + 2rem), 250px);
+    }
+
+    .myImage {
+        width: 65%;
     }
 }
 
@@ -213,6 +220,7 @@
 
     .hero {
         height: 65vh;
+        min-height: 615px;
     }
 
     .myImage {
@@ -242,6 +250,7 @@
 
     .hero {
         height: 60vh;
+        min-height: 567px;
     }
 
     .myImage {
@@ -257,6 +266,7 @@
 
     .hero {
         height: 55vh;
+        min-height: 520px;
     }
 
     .myImage {
@@ -271,6 +281,7 @@
 
     .hero {
         height: 45vh;
+        min-height: 426px;
     }
 
     .myImage {
@@ -286,6 +297,7 @@
 
     .hero {
         height: 60vh;
+        min-height: 567px;
     }
 
     .extraDetails {
@@ -310,10 +322,6 @@
         font-size: clamp(30px, calc(5vw + 1.5rem), 250px);
     }
 
-    .hero {
-        height: 60vh;
-    }
-
     .myImage {
         width: 100%;
     }
@@ -326,6 +334,7 @@
 
     .hero {
         height: 55vh;
+        min-height: 520px;
     }
 
     .myImage {
@@ -340,5 +349,6 @@
 
     .hero {
         height: 50vh;
+        min-height: 473px;
     }
 }
