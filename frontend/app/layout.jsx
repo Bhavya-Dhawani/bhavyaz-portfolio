@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html data-theme="dark blue" lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div id="transition">
           <span id="transition-text"></span>
