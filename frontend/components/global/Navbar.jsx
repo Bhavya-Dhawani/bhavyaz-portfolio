@@ -69,7 +69,7 @@ const Navbar = () => {
 
     return (
         <div className={styles.nav}>
-            <div className={styles.logo} ref={logoRef}><span>Bhavya's</span> <span>PortFolio</span></div>
+            <div className={styles.logo} ref={logoRef}><span>Bhavya&apos;s</span> <span>PortFolio</span></div>
             <div className={`${styles.items} ${sidebar ? styles.open : styles.close}`}>
                 {
                     routes.map((route, i) => {
