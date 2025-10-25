@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { UserProvider } from "@/helpers/UserContext";
+// import { UserProvider } from "@/helpers/UserContext";
 
 
 const url = process.env.SERVER_URL;
@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
         <div id="transition">
           <span id="transition-text"></span>
         </div>
-        <UserProvider url={url}>
+        {/* <UserProvider url={url}> */}
           {children}
-        </UserProvider>
+        {/* </UserProvider> */}
       </body>
     </html>
   );
