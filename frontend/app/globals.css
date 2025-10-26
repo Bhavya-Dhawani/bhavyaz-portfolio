@@ -239,6 +239,7 @@
 body {
   overflow-x: hidden;
   box-sizing: border-box;
+  background: var(--neutral--100);
 }
 
 

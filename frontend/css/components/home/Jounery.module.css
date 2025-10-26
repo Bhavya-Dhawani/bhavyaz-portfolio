@@ -1,0 +1,14 @@
+.journey {
+    background: var(--neutral--100);
+}
+
+.journeyHead {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 5rem; /* space before Timeline */
+}
+
+.journeyTimeline {
+  position: relative;
+  z-index: 5;
+}

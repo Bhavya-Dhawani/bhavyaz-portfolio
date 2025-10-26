@@ -12,48 +12,23 @@ const Hero = () => {
   const extraRef = useRef(null);
 
   useGSAP(() => {
-    timeline.from(`.${styles.hero} h2 span`, {
-      y: 20,
-      opacity: 0,
-      duration: 0.25,
-      stagger: 0.05,
-    }, "Animation 1");
-
-    timeline.from(`.${styles.hero} h1 span`, {
-      y: 20,
-      opacity: 0,
-      duration: 0.25,
-      stagger: 0.05,
-    });
-
-    timeline.from(`.${styles.myImage}`, {
-      opacity: 0,
-      duration: 0.5,
-    }, "-=0.5");
-
-    timeline.from(`.${styles.extraDetails}`, {
-      opacity: 0,
-      duration: 0.3,
-      y: 30
-    })
-
     const wrapper = wrapperRef.current;
+    const el = extraRef.current;
     const texts = wrapper.querySelectorAll(`.${styles.text}`);
-    let lineHeight = parseFloat(getComputedStyle(texts[0]).lineHeight) || 60;
 
-    window.addEventListener("resize", () => {
-      lineHeight = parseFloat(getComputedStyle(texts[0]).lineHeight) || 60;
-    });
+    const heroTL = gsap.timeline();
 
-    const tl = gsap.timeline({
-      repeat: -1,
-      defaults: { duration: 1, ease: "power2.inOut" },
-    });
+    heroTL
+      .from(`.${styles.hero} h2 span`, { y: 20, opacity: 0, duration: 0.25, stagger: 0.05 })
+      .from(`.${styles.hero} h1 span`, { y: 20, opacity: 0, duration: 0.25, stagger: 0.05 })
+      .from(`.${styles.myImage}`, { opacity: 0, duration: 0.5 }, "-=0.5")
+      .from(`.${styles.extraDetails}`, { opacity: 0, y: 30, duration: 0.3 });
 
-    timeline.add(tl, "+=0.3")
+    const lineHeight = parseFloat(getComputedStyle(texts[0]).lineHeight) || 60;
+    const loopTL = gsap.timeline({ repeat: -1, defaults: { duration: 1, ease: "power2.inOut" } });
 
     for (let i = 1; i < texts.length; i++) {
-      tl.to(wrapper, {
+      loopTL.to(wrapper, {
         y: -lineHeight * i,
         delay: 1,
         onStart: () => {
@@ -61,28 +36,25 @@ const Hero = () => {
           gsap.fromTo(
             currentText.querySelectorAll("span"),
             { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              stagger: 0.05,
-              duration: 0.5,
-              ease: "power2.out",
-            }
+            { opacity: 1, y: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" }
           );
         },
       });
     }
 
-    tl.set(wrapper, { y: 0 });
+    // heroTL.add(loopTL, "+=0.3");
+    timeline.add(heroTL);
 
-    const el = extraRef.current;
-    el.addEventListener("mouseenter", () => tl.pause());
-    el.addEventListener("mouseleave", () => tl.resume());
+    const onEnter = () => loopTL.pause();
+    const onLeave = () => loopTL.resume();
+
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
 
     return () => {
-      el.removeEventListener("mouseenter", () => tl.pause());
-      el.removeEventListener("mouseleave", () => tl.resume());
-      tl.kill();
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      loopTL.kill();
     };
   });
 
