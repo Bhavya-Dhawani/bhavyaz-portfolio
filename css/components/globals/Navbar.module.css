@@ -1,0 +1,29 @@
+.nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    color: var(--base-font);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 5rem;
+    width: 100vw;
+    padding: 0.5rem 2rem;
+}
+
+.imgCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    width: 5rem;
+    height: auto;
+    border-radius: 50%;
+}

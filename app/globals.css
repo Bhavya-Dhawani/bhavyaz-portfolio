@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "nm";
+    src: url("../assets/fonts/nm/NeueMachina-Regular.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ju";
+    src: url("../assets/fonts/juana/Fontspring-DEMO-juana-regularit.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: #1b1b1b;
+    --base-font: #fff;
+    --primary-color: #2181FF;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "nm", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+body{
+    /* cursor: none; */
+    background-color: var(--bg-color);
+}
+
+html {
+    font-size: clamp(14px, 1vw, 18px);
+}
+
+
+
+/* cursor */
+.cursor {
+    background-color: var(--base-font);
+    width: 30px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    border-radius: 50%;
+    transition: width 0.1s ease;
+    z-index: 99;
+}
+
+.text {
+    mix-blend-mode: difference;
+    width: 50px;
+}
+
+.hide {
+    opacity: 0;
+}

@@ -1,0 +1,145 @@
+.hero {
+  background-color: var(--bg-color);
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.view1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroText {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  z-index: 10;
+  text-transform: uppercase;
+  text-align: center;
+  width: 55%;
+}
+
+.blob {
+  background: var(--primary-color);
+  width: 30vw;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(20px);
+  z-index: 1;
+}
+
+.modelLeft {
+  position: absolute;
+  left: 0;
+  bottom: 1%;
+  width: 20rem;
+  height: 40vh;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.light1 {
+  position: absolute;
+  top: -35rem;
+  left: 25%;
+
+  width: 28rem;
+  height: 60rem; 
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(33,129,255,0.90) 20%,
+    rgba(33,129,255,0.55) 40%,
+    rgba(33,129,255,0.18) 65%,  
+    transparent 80%
+  );
+
+  filter: blur(120px);
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(30deg);
+}
+
+.light2 {
+  position: absolute;
+  top: -30rem;
+  left: 45%;
+
+  width: 40rem;
+  height: 40rem; 
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(33,129,255,0.90) 20%,
+    rgba(33,129,255,0.55) 40%,
+    rgba(33,129,255,0.18) 65%,  
+    transparent 80%
+  );
+
+  filter: blur(120px);
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(270deg);
+}
+
+.font {
+  font-family: "ju", sans-serif;
+  text-transform: capitalize;
+}
+
+.color {
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .light1 {
+    width: 15rem;
+    height: 30rem;
+    top: -10rem;
+    left: 20%;
+  }
+
+  .light2 {
+    width: 15rem;
+    height: 15rem;
+    top: -10rem;
+    left: 60%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .heroText {
+    width: 100%;
+  }
+
+  .hero {
+    height: 80vh;
+  }
+
+  .light1 {
+    display: none;
+  }
+
+  .light2 {
+    top: 1%;
+    left: 30%;
+    width: 20rem;
+    height: 20rem;
+  }
+}

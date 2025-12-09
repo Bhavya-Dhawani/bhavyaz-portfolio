@@ -1,0 +1,24 @@
+.button {
+    color: var(--bg-color);
+    background: var(--primary-color);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    font-family: Helvetica, sans-serif;
+    border-radius: 5px;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: var(--primary-color);
+    background: var(--bg-color);
+}
+
+@media screen and (max-width: 600px) {
+    .button {
+        font-size: 1.5rem;
+    }
+}
