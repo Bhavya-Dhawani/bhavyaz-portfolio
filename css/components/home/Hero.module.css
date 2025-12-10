@@ -9,6 +9,8 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 500px;
+  /* overflow: visible;
+  overflow-x: hidden; */
 }
 
 .view1 {
@@ -58,15 +60,13 @@
   left: 25%;
 
   width: 28rem;
-  height: 60rem; 
+  height: 60rem;
 
-  background: radial-gradient(
-    ellipse at center,
-    rgba(33,129,255,0.90) 20%,
-    rgba(33,129,255,0.55) 40%,
-    rgba(33,129,255,0.18) 65%,  
-    transparent 80%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(33, 129, 255, 0.90) 20%,
+      rgba(33, 129, 255, 0.55) 40%,
+      rgba(33, 129, 255, 0.18) 65%,
+      transparent 80%);
 
   filter: blur(120px);
   opacity: 1;
@@ -81,15 +81,13 @@
   left: 45%;
 
   width: 40rem;
-  height: 40rem; 
+  height: 40rem;
 
-  background: radial-gradient(
-    ellipse at center,
-    rgba(33,129,255,0.90) 20%,
-    rgba(33,129,255,0.55) 40%,
-    rgba(33,129,255,0.18) 65%,  
-    transparent 80%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(33, 129, 255, 0.90) 20%,
+      rgba(33, 129, 255, 0.55) 40%,
+      rgba(33, 129, 255, 0.18) 65%,
+      transparent 80%);
 
   filter: blur(120px);
   opacity: 1;
@@ -107,6 +105,49 @@
   color: var(--primary-color);
 }
 
+.stats {
+  color: var(--base-font);
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.count {
+  font-family: Helvetica;
+  font-size: 2.5rem;
+}
+
+.detail {
+  font-size: 1.5rem;
+}
+
+.light3 {
+  position: absolute;
+  top: 60vh;
+  right: 20px;
+  width: 50rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(0, 38, 255, 0.15) 0%,
+      rgba(0, 28, 120, 0.1) 25%,
+      rgba(0, 5, 80, 0.06) 45%,
+      rgba(0, 7, 40, 0.04) 60%,
+      transparent 100%);
+  filter: blur(10px);
+  z-index: 19;
+
+}
+
 @media screen and (max-width: 768px) {
   .light1 {
     width: 15rem;
@@ -120,6 +161,18 @@
     height: 15rem;
     top: -10rem;
     left: 60%;
+  }
+
+  .stats {
+    width: 100vw;
+  }
+
+  .count {
+    font-size: 1.5rem;
+  }
+
+  .detail {
+    font-size: 1rem;
   }
 }
 
@@ -141,5 +194,17 @@
     left: 30%;
     width: 20rem;
     height: 20rem;
+  }
+
+  .hero {
+    padding-top: 10vh;
+  }
+
+  .stats {
+    width: 100vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
   }
 }

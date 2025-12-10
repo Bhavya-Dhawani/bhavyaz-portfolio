@@ -1,0 +1,10 @@
+.about {
+    color: var(--base-font);
+    text-align: center;
+    position: relative;
+    height: 100vh;
+}
+
+.head {
+    font-size: 10rem;
+}

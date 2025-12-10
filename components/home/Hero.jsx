@@ -155,25 +155,42 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className={styles.hero}>
-      {/* <div ref={threeContainerRef} className={styles.modelLeft}></div> */}
+    <>
+      <div className={styles.light3}></div>
+      <section className={styles.hero}>
+        <div className={styles.light1}></div>
+        <div className={styles.light2}></div>
 
-      <div className={styles.light1}></div>
-      <div className={styles.light2}></div>
+        {/* <div ref={blobRef} className={styles.blob} /> */}
 
-      {/* <div ref={blobRef} className={styles.blob} /> */}
+        <div></div>
 
-      <div className={styles.view1}>
-        <h1
-          className={styles.heroText}
-          onMouseEnter={() => { cursorRef.current?.classList.add("text"); cursorRef.current?.classList.remove("hide") }}
-          onMouseLeave={() => { cursorRef.current?.classList.remove("text"); cursorRef.current?.classList.add("hide") }}
-        >
-          I Only <span className={styles.color}>Create</span> Something That <span className={styles.font}>Really</span> Matters
-        </h1>
-        <Button children={"Design Your Next Move"} />
-      </div>
-    </section>
+        <div className={styles.view1}>
+          <h1
+            className={styles.heroText}
+            onMouseEnter={() => { cursorRef.current?.classList.add("text"); cursorRef.current?.classList.remove("hide") }}
+            onMouseLeave={() => { cursorRef.current?.classList.remove("text"); cursorRef.current?.classList.add("hide") }}
+          >
+            I Only <span className={styles.color}>Create</span> Something That <span className={styles.font}>Really</span> Matters
+          </h1>
+          <Button children={"Design Your Next Move"} />
+        </div>
+        <div className={styles.stats}>
+          <div className={styles.stat}>
+            <span className={styles.count}>100%</span>
+            <span className={styles.detail}>SEO on websites</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.count}>15+</span>
+            <span className={styles.detail}>Technologies Known</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.count}>2x</span>
+            <span className={styles.detail}>Faster Websites</span>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

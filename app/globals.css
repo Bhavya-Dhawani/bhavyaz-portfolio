@@ -33,6 +33,10 @@ body{
     background-color: var(--bg-color);
 }
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
 html {
     font-size: clamp(14px, 1vw, 18px);
 }
