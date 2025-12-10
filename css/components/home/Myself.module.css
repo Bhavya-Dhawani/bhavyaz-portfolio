@@ -1,0 +1,186 @@
+.myself {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 85vh;
+    min-height: 711px;
+}
+
+.head {
+    margin: 0;
+    color: var(--base-font);
+    font-weight: 600;
+    font-size: clamp(3rem, 8vw, 8rem);
+    transform: scaleY(3.5);
+    transform-origin: top center;
+    line-height: 0.9;
+    white-space: nowrap;
+    letter-spacing: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleY(3.5);
+    z-index: 30;
+}
+
+.myImg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(160px, 28vw, 500px);
+    height: auto;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.light {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 40%;
+    background: linear-gradient(transparent, var(--primary-color), transparent);
+}
+
+@media (max-width: 768px) {
+
+    .head {
+        font-size: clamp(2.2rem, 9vw, 5rem);
+        letter-spacing: 0.2rem;
+        transform: translateX(-50%) scaleY(3);
+    }
+
+    .myImg {
+        width: clamp(140px, 45vw, 330px);
+    }
+}
+
+@media (max-width: 420px) {
+
+    .head {
+        font-size: clamp(1.6rem, 9vw, 3.4rem);
+        transform: translateX(-50%) scaleY(2.4);
+        letter-spacing: 0.05rem;
+    }
+
+    .myImg {
+        width: clamp(110px, 65vw, 250px);
+    }
+}
+
+@media screen and (max-width: 1380px) {
+    .myself {
+        height: 75vh;
+        min-height: 627px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .myself {
+        height: 60vh;
+        min-height: 502px;
+    }
+}
+
+@media screen and (max-width: 965px) {
+    .myself {
+        height: 50vh;
+        min-height: 418px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .myself {
+        height: 65vh;
+        min-height: 543px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .myself {
+        height: 64vh;
+        min-height: 535px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .myself {
+        height: 60vh;
+        min-height: 502px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .myself {
+        height: 55vh;
+        min-height: 460px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .myself {
+        height: 50vh;
+        min-height: 418px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .myself {
+        height: 45vh;
+        min-height: 376px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .myself {
+        height: 40vh;
+        min-height: 334px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .myself {
+        height: 35vh;
+        min-height: 293px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .myself {
+        height: 45vh;
+        min-height: 376px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .myself {
+        height: 43vh;
+        min-height: 359px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .myself {
+        height: 40vh;
+        min-height: 335px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .myself {
+        height: 35vh;
+        min-height: 293px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .myself {
+        height: 33vh;
+        min-height: 276px;
+    }
+}

@@ -2,9 +2,174 @@
     color: var(--base-font);
     text-align: center;
     position: relative;
-    height: 100vh;
+    min-height: 75vh;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
 }
 
 .head {
-    font-size: 10rem;
+    font-size: 8rem;
+}
+
+.text1 {
+    /* display: flex; */
+    font-size: 3.5rem;
+    font-weight: 600;
+    /* justify-content: start; */
+    text-align: left;
+    padding-left: 2rem;
+    /* gap: 10px; */
+    text-align: left;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.color {
+    color: var(--primary-color);
+    font-weight: inherit;
+}
+
+.txt {
+    flex: 0 0 33.333%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.25;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    font-weight: 700;
+}
+
+.canvasWrapper {
+    flex: 0 0 33.333%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.canvas {
+    width: 100%;
+    max-width: 420px;
+    height: min(40vh, 380px);
+    max-height: 420px;
+    aspect-ratio: 1 / 1;
+    display: block;
+    box-sizing: border-box;
+}
+
+.center>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    flex: 0 0 33.333%;
+    width: 33.333%;
+}
+
+.text2 {
+    font-size: 4rem;
+    padding-top: 1rem;
+    font-weight: 600;
+}
+
+.font {
+    font-family: "ju", sans-serif;
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 1200px) {
+    .center {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .txt {
+        flex: 0 0 auto;
+        width: 100%;
+        font-size: 2rem;
+        text-align: center;
+        padding: 0.6rem 1rem;
+    }
+
+    .canvasWrapper {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 480px;
+        padding: 0 1rem;
+    }
+
+    .canvas {
+        height: min(36vh, 360px);
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .head {
+        font-size: 6rem;
+    }
+
+    .text1,
+    .text2 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .head {
+        font-size: 3.4rem;
+    }
+
+    .text1,
+    .text2 {
+        font-size: 1.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .txt {
+        font-size: 1.4rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .canvas {
+        height: min(48vh, 320px);
+        width: 100%;
+        max-width: none;
+    }
+
+    .about {
+        height: 80vh;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .about {
+        height: 85vh;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .about {
+        height: 92vh;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about {
+        height:105vh;
+    }
 }
