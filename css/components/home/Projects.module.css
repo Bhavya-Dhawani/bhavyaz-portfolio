@@ -1,0 +1,68 @@
+.projects {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.head {
+    font-size: 10rem;
+    color: var(--base-font);
+    text-align: center;
+    margin: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.exp {
+    border: 2px solid var(--base-font);
+    outline: none;
+    background: var(--bg-color);
+    color: white;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 5rem;
+}
+
+.exp:hover {
+    background: var(--base-font);
+    color: var(--bg-color);
+}
+
+.light {
+  position: absolute;
+  top: 0;
+  left: -10rem;
+  width: 30rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(0, 38, 255, 0.15) 0%,
+      rgba(0, 28, 120, 0.1) 25%,
+      rgba(0, 5, 80, 0.06) 45%,
+      rgba(0, 7, 40, 0.04) 60%,
+      transparent 100%);
+  filter: blur(10px);
+  z-index: 19;
+
+}
+
+@media screen and (max-width: 600px) {
+    .head {
+        font-size: 5rem;
+    }
+
+    .exp {
+        font-size: 1.25rem;
+        padding: 0.5rem 1rem;
+        margin: 1rem;
+    }
+}

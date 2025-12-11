@@ -47,6 +47,15 @@
     background: linear-gradient(transparent, var(--primary-color), transparent);
 }
 
+.light2 {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 20%;
+    background: linear-gradient(transparent, var(--bg-color));
+    z-index: 70;
+}
+
 @media (max-width: 768px) {
 
     .head {

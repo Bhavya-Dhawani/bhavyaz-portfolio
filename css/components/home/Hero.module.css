@@ -110,6 +110,7 @@
   display: flex;
   justify-content: space-around;
   width: 80vw;
+  opacity: 0;
 }
 
 .stat {
@@ -207,4 +208,50 @@
     align-items: center;
     gap: 20px;
   }
+}
+
+
+.rest {
+  opacity: 0;
+  display: inline-block;
+}
+
+.btnWrap {
+  display: inline-block;
+  z-index: 30;
+}
+
+.typingCursor {
+  display: inline-block;
+  padding-right: 6px;
+  position: relative;
+}
+
+.cursorVisible::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
+  height: 1.05em;
+  background: var(--base-font);
+  animation: blinkCursor 1s steps(1) infinite;
+}
+
+@keyframes blinkCursor {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.view1 {
+  z-index: 25;
 }

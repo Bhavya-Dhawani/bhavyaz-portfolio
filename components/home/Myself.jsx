@@ -9,6 +9,7 @@ const Myself = () => {
             <h1 className={styles.head}>Bhavya Dhanwani</h1>
             <Image src={me} alt="Bhavya" className={styles.myImg} sizes="(max-width:420px) 60vw, (max-width:768px) 40vw, 30vw" priority />
             <div className={styles.light}></div>
+            <div className={styles.light2}></div>
         </section>
     );
 };

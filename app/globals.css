@@ -14,9 +14,19 @@
 
 :root {
     --bg-color: #1b1b1b;
+    --bg-colorl: #2c2c2c;
+    --bg-colord: #222222;
     --base-font: #fff;
     --primary-color: #2181FF;
+    --primary-colord: #0d76ff;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 * {
     padding: 0;
@@ -28,7 +38,7 @@
 
 }
 
-body{
+body {
     /* cursor: none; */
     background-color: var(--bg-color);
 }
@@ -36,6 +46,12 @@ body{
 *::-webkit-scrollbar {
     display: none;
 }
+
+[data-scroll-speed] {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
 
 html {
     font-size: clamp(14px, 1vw, 18px);

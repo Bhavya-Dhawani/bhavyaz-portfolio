@@ -59,6 +59,10 @@
     transition: all 0.3s ease;
 }
 
+.link {
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 768px) {
     .links {

@@ -2,189 +2,149 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
 import styles from "@/css/components/home/Hero.module.css";
 import Button from "@/ui/Button";
+import ParallaxScroll from "@/utils/ParallelXScroll";
 
-const Hero = () => {
+export default function Hero() {
   const cursorRef = useRef(null);
-  const blobRef = useRef(null);
-  const threeContainerRef = useRef(null);
+  const firstPartRef = useRef(null);
+  const restRef = useRef(null);
+  const btnWrapRef = useRef(null);
+  const btnRef = useRef(null);
+  const statsRefs = useRef([]);
+  const statsContainerRef = useRef(null);
 
   useEffect(() => {
     cursorRef.current = document.querySelector(".cursor");
+  }, []);
 
-    const blob = blobRef.current;
-    if (!blob) return;
+  useEffect(() => {
+    const el = firstPartRef.current;
+    if (!el) return;
 
-    gsap.timeline({ repeat: -1, repeatRefresh: true }).to(blob, {
-      duration: 2,
-      ease: "power2.inOut",
-      borderRadius: () => {
-        const r = () => 20 + Math.random() * 81;
-        return `${r()}% ${r()}% ${r()}% ${r()}%`;
-      },
-    });
+    el.style.opacity = "1";
 
-    const container = threeContainerRef.current;
-    if (!container) return;
+    const text = "I Only ";
+    let i = 0;
+    const speed = 90;
+    const blinkRate = 800;
 
-    const scene = new THREE.Scene();
+    el.classList.add(styles.typingCursor);
+    const blink = () => el.classList.toggle(styles.cursorVisible);
+    const blinkInterval = setInterval(blink, blinkRate);
 
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(2, 2, 4);
+    const typer = setInterval(() => {
+      i++;
+      const partial = text.slice(0, i);
+      el.innerHTML = `${partial}<span class="${styles.color}">Create</span>`;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setClearColor(0x000000, 0);
+      if (i >= text.length) {
+        clearInterval(typer);
+        clearInterval(blinkInterval);
 
-    container.appendChild(renderer.domElement);
+        el.classList.remove(styles.typingCursor);
+        el.classList.remove(styles.cursorVisible);
 
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-    const dir = new THREE.DirectionalLight(0xffffff, 1);
-    dir.position.set(5, 10, 7);
-    scene.add(dir);
+        gsap.to(el, { opacity: 1, duration: 0.35 });
 
-    const modelRef = { current: null };
-    const mouseRef = { current: { x: 0, y: 0 } };
+        gsap.to(statsContainerRef.current, { opacity: 1, duration: 0.02, delay: 0.2 });
 
-    const updateModelScale = () => {
-      if (!container || !modelRef.current) return;
-      const w = container.clientWidth;
+        gsap.fromTo(
+          restRef.current,
+          { y: 22, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out", delay: 0.35 }
+        );
 
-      const baseWidth = 1200;
-      let scale = (w / baseWidth) * 0.07;
+        gsap.fromTo(
+          btnWrapRef.current,
+          { y: 22, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.55,
+            onComplete: () => {
+              if (btnRef.current) {
+                gsap.to(btnRef.current, {
+                  opacity: 1,
+                  duration: 0.4,
+                  ease: "power2.out",
+                });
+              }
+            },
+          }
+        );
 
-      scale = THREE.MathUtils.clamp(scale, 0.08, 0.1);
-
-      modelRef.current.scale.set(scale, scale, scale);
-    };
-
-    const loader = new GLTFLoader();
-    loader.load(
-      "/models/laptop/scene.gltf",
-      (gltf) => {
-        const model = gltf.scene;
-
-        modelRef.current = model;
-
-        model.position.set(0, -0.5, 0);
-        model.rotation.y = Math.PI / 8;
-        updateModelScale();
-
-        scene.add(model);
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading model:", error);
+        gsap.from(statsRefs.current, {
+          y: 28,
+          opacity: 0,
+          stagger: 0.18,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.75,
+        });
       }
-    );
-
-    const handleResize = () => {
-      if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-
-      updateModelScale();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    const handleMouseMove = (e) => {
-      const normX = (e.clientX / window.innerWidth) * 2 - 1;
-      const normY = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseRef.current.x = normX;
-      mouseRef.current.y = normY;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    const baseCam = { x: 0, y: 1.8, z: 4 };
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      const targetX = baseCam.x + mouseRef.current.x * 1.2;
-      const targetY = baseCam.y + mouseRef.current.y * 0.8;
-
-      camera.position.x = THREE.MathUtils.lerp(
-        camera.position.x,
-        targetX,
-        0.05
-      );
-      camera.position.y = THREE.MathUtils.lerp(
-        camera.position.y,
-        targetY,
-        0.05
-      );
-      camera.position.z = THREE.MathUtils.lerp(
-        camera.position.z,
-        baseCam.z,
-        0.05
-      );
-
-      camera.lookAt(0, 0, 0);
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
+    }, speed);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-
-      renderer.dispose();
-      if (renderer.domElement && renderer.domElement.parentNode) {
-        renderer.domElement.parentNode.removeChild(renderer.domElement);
-      }
+      clearInterval(typer);
+      clearInterval(blinkInterval);
     };
   }, []);
 
+  const addStatRef = (el) => {
+    if (el && !statsRefs.current.includes(el)) statsRefs.current.push(el);
+  };
+
   return (
     <>
+      <ParallaxScroll />
       <div className={styles.light3}></div>
-      <section className={styles.hero}>
+
+      <section className={styles.hero} id="home">
         <div className={styles.light1}></div>
         <div className={styles.light2}></div>
-
-        {/* <div ref={blobRef} className={styles.blob} /> */}
 
         <div></div>
 
         <div className={styles.view1}>
           <h1
             className={styles.heroText}
-            onMouseEnter={() => { cursorRef.current?.classList.add("text"); cursorRef.current?.classList.remove("hide") }}
-            onMouseLeave={() => { cursorRef.current?.classList.remove("text"); cursorRef.current?.classList.add("hide") }}
+            onMouseEnter={() => {
+              cursorRef.current?.classList.add("text");
+              cursorRef.current?.classList.remove("hide");
+            }}
+            onMouseLeave={() => {
+              cursorRef.current?.classList.remove("text");
+              cursorRef.current?.classList.add("hide");
+            }}
           >
-            I Only <span className={styles.color}>Create</span> Something That <span className={styles.font}>Really</span> Matters
+            <span ref={firstPartRef} className={styles.firstPart} aria-hidden="false"></span>
+
+            <span ref={restRef} className={styles.rest} aria-hidden="false">
+              {" Something That "}
+              <span className={styles.font}>Really</span>
+              {" Matters"}
+            </span>
           </h1>
-          <Button children={"Design Your Next Move"} />
+
+          <div ref={btnWrapRef} className={styles.btnWrap}>
+            <Button ref={btnRef}>Design Your Next Move</Button>
+          </div>
         </div>
-        <div className={styles.stats}>
-          <div className={styles.stat}>
+
+        <div className={styles.stats} ref={statsContainerRef}>
+          <div data-scroll-speed="-0.07" className={styles.stat} ref={addStatRef}>
             <span className={styles.count}>100%</span>
             <span className={styles.detail}>SEO on websites</span>
           </div>
-          <div className={styles.stat}>
+          <div data-scroll-speed="-0.05" className={styles.stat} ref={addStatRef}>
             <span className={styles.count}>15+</span>
             <span className={styles.detail}>Technologies Known</span>
           </div>
-          <div className={styles.stat}>
+          <div data-scroll-speed="-0.07" className={styles.stat} ref={addStatRef}>
             <span className={styles.count}>2x</span>
             <span className={styles.detail}>Faster Websites</span>
           </div>
@@ -192,6 +152,4 @@ const Hero = () => {
       </section>
     </>
   );
-};
-
-export default Hero;
+}

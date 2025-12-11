@@ -1,0 +1,9 @@
+.footer {
+    background: var(--bg-colord);
+}
+
+.head {
+    text-align: center;
+    color: var(--base-font);
+    padding: 20px;
+}

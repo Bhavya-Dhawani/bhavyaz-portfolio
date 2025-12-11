@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+
 import styles from "@/css/components/home/About.module.css";
+import ParallaxScroll from "@/utils/ParallelXScroll";
 
 export default function About() {
     const [age, setAge] = useState(null);
@@ -12,6 +15,10 @@ export default function About() {
     const rendererRef = useRef(null);
     const roRef = useRef(null);
     const [loaded, setLoaded] = useState(false);
+
+    const headRef = useRef(null);
+    const textRefs = useRef([]);
+    const centerRef = useRef(null);
 
     useEffect(() => {
         const today = new Date();
@@ -165,7 +172,7 @@ export default function About() {
                 rafRef.current = requestAnimationFrame(animate);
 
                 if (modelRef.current) {
-                    modelRef.current.rotation.y += 0.002; // smooth rotation
+                    modelRef.current.rotation.y += 0.002;
                 }
 
                 controls.update();
@@ -205,34 +212,97 @@ export default function About() {
         };
     }, []);
 
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(headRef.current, {
+                y: -18,
+                autoAlpha: 0,
+                duration: 0.9,
+                ease: "power3.out",
+            });
+
+            gsap.from(textRefs.current, {
+                y: 18,
+                autoAlpha: 0,
+                duration: 0.8,
+                stagger: 0.14,
+                ease: "power3.out",
+                delay: 0.18,
+            });
+
+            gsap.from(centerRef.current, {
+                scale: 0.98,
+                autoAlpha: 0,
+                duration: 0.9,
+                ease: "power3.out",
+                delay: 0.35,
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
+
+    useEffect(() => {
+        if (!loaded) return;
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                canvasRef.current,
+                { scale: 0.98, autoAlpha: 0 },
+                { scale: 1, autoAlpha: 1, duration: 0.9, ease: "power3.out" }
+            );
+
+            if (modelRef.current) {
+                gsap.fromTo(
+                    modelRef.current.rotation,
+                    { y: modelRef.current.rotation.y - 0.4 },
+                    { y: modelRef.current.rotation.y, duration: 0.9, ease: "power3.out" }
+                );
+            }
+        });
+
+        return () => ctx.revert();
+    }, [loaded]);
+
+    const addTextRef = (el) => {
+        if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
+    };
+
     return (
-        <section className={styles.about}>
-            <h1 className={styles.head}>WHO AM I?</h1>
+        <>
+            <ParallaxScroll />
+            <section className={styles.about} id="about">
+                <h1 ref={headRef} data-scroll-speed="-0.01" className={styles.head}>
+                    WHO AM I?
+                </h1>
 
-            <div className={styles.content}>
-                <div className={styles.text1}>
-                    A <span className={styles.color}>{age}</span> Years old Man Surviving from <span className={styles.color}>Day 0</span> When i was born on this planet named <span className={styles.color}>Earth</span>
-                </div>
+                <div className={styles.content}>
+                    <div ref={addTextRef} className={styles.text1}>
+                        A <span className={styles.color}>{age}</span> Years old Man Surviving from{" "}
+                        <span className={styles.color}>Day 0</span> When i was born on this planet named{" "}
+                        <span className={styles.color}>Earth</span>
+                    </div>
 
-                <div className={styles.center}>
-                    <div className={styles.txt}>converting <span className={styles.color}>CAFFEINE</span> to CODE</div>
-
-                    <div className={styles.canvasWrapper}>
-                        <div style={{ marginBottom: 8, fontSize: 13 }}>
-                            {loaded ? "" : "Loading model..."}
+                    <div ref={centerRef} className={styles.center}>
+                        <div ref={addTextRef} data-scroll-speed="-0.01" className={styles.txt}>
+                            converting <span className={styles.color}>CAFFEINE</span> to CODE
                         </div>
-                        <canvas ref={canvasRef} className={styles.canvas} />
+
+                        <div className={styles.canvasWrapper}>
+                            <div style={{ marginBottom: 8, fontSize: 13 }}>{loaded ? "" : "Loading model..."}</div>
+                            <canvas ref={canvasRef} className={styles.canvas} />
+                        </div>
+
+                        <div ref={addTextRef} data-scroll-speed="-0.03" className={styles.txt}>
+                            With some high dreams. Coz my name itself says{" "}
+                            <span className={`${styles.color} ${styles.font}`}>Big Money</span>
+                        </div>
                     </div>
 
-                    <div className={styles.txt}>
-                        With some high dreams. Coz my name itself says <span className={`${styles.color} ${styles.font}`}>Big Money</span>
+                    <div ref={addTextRef} className={styles.text2}>
+                        As my <span className={styles.color}>NAME</span> is...
                     </div>
                 </div>
-
-                <div className={styles.text2}>
-                    As my <span className={styles.color}>NAME</span> is...
-                </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 }

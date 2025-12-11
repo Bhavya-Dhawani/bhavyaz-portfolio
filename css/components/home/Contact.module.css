@@ -1,0 +1,143 @@
+.contact {
+    position: relative;
+}
+
+.head {
+    text-align: center;
+    color: var(--base-font);
+    font-size: 5.5rem;
+}
+
+.formWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 40vw;
+    margin: 2rem;
+    padding: 2.5rem;
+    background: var(--bg-colord);
+    border-radius: 20px;
+}
+
+.head2 {
+    color: var(--base-font);
+    margin-bottom: 1.5rem;
+    padding-left: 0.25rem;
+}
+
+.head3 {
+    color: var(--base-font);
+    margin-bottom: 1.5rem;
+    padding-left: 0.25rem;
+    text-align: center;
+    font-size: 0.75rem;
+    margin-top: 10px;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.label {
+    color: var(--base-font);
+    font-size: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(10%, -50%);
+    transition: all 0.3s ease;
+}
+
+.input:focus-within ~ .label {
+    top: -20%;
+    color: var(--primary-color);
+
+}
+
+.input:focus-within {
+    border: 2px solid var(--primary-colord);
+}
+
+.input:not(:focus):not(:placeholder-shown) ~ .label {
+    top: -20%;
+    color: var(--base-font);
+
+}
+
+.input:not(:focus):not(:placeholder-shown) {
+    border: 2px solid var(--base-font);
+}
+
+.inputBox:hover .label {
+    color: var(--primary-color);
+}
+
+.inputBox:hover .input {
+    border: 2px solid var(--primary-color);
+}
+
+.submit {
+    font-size: 1rem;
+    background: var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: var(--base-font);
+    outline: none;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit:hover {
+    background: transparent;
+}
+
+.submitBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    background: var(--bg-colorl);
+    outline: none;
+    border: 2px solid var(--bg-colorl);
+    font-size: 1rem;
+    color: var(--base-font);
+    border-radius: 5px;
+    padding: 0.75rem;
+    letter-spacing: 0.05rem;
+}
+
+@media screen and (max-width: 768px) {
+    .head {
+        font-size: 4rem;
+    }
+
+    .form {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .head {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .head {
+        font-size: 2rem;
+    }
+
+    .form {
+        width: 95vw;
+    }
+}

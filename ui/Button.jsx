@@ -2,19 +2,18 @@
 import React, { useEffect, useRef } from 'react';
 import styles from '@/css/ui/Button.module.css';
 
-const Button = ({children}) => {
+const Button = React.forwardRef(({ children }, ref) => {
+  const cursor = useRef(null);
 
-    const cursor = useRef(null);
-
-    useEffect(()=>{
-        cursor.current = document.querySelector('.cursor');
-    },[])
+  useEffect(() => {
+    cursor.current = document.querySelector('.cursor');
+  }, []);
 
   return (
-    <button className={styles.button}>
-        {children}
+    <button ref={ref} className={styles.button}>
+      {children}
     </button>
-  )
-}
+  );
+});
 
-export default Button
+export default Button;
