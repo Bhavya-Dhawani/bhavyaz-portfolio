@@ -22,7 +22,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
 const logos = [
-  ai, arduino, clang, css3, gsapLogo, html5, js, logo,
+  ai, arduino, clang, css3, gsapLogo, html5, js,
   mongodb, mysql, nextjs, nodejs, php, python, react, threejs
 ];
 
