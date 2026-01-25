@@ -1,7 +1,8 @@
+"use client"
 import React from 'react'
 import styles from '@/css/components/home/Projects.module.css';
-import Button from '@/ui/Button';
 import ParallaxScroll from '@/utils/ParallelXScroll';
+import Link from 'next/link';
 
 const Projects = () => {
     return (
@@ -9,7 +10,7 @@ const Projects = () => {
             <ParallaxScroll />
             <section className={styles.projects} id='projects'>
                 <h1 className={styles.head}>Projects</h1>
-                <button data-scroll-speed="0.05" className={styles.exp}>Enter the Experience</button>
+                <Link data-scroll-speed="0.05" className={styles.exp} href={'/projects'}>Enter the Experience</Link>
                 <div className={styles.light}></div>
             </section>
         </>

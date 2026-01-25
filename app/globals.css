@@ -38,6 +38,11 @@ input::-webkit-inner-spin-button {
 
 }
 
+.hide {
+    display: none;
+    z-index: -999;
+}
+
 body {
     /* cursor: none; */
     background-color: var(--bg-color);

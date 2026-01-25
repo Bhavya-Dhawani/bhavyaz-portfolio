@@ -1,0 +1,91 @@
+.box {
+    position: fixed;
+    top: 0;
+    bottom: 25%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.back {
+    text-decoration: none;
+    color: white;
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.back:hover {
+    opacity: 0.6;
+}
+
+.people {
+    width: 65rem;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.explain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: var(--bg-color);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: nm;
+    color: var(--base-font);
+    font-size: 2rem;
+    animation: hide 2s ease 2s;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .people {
+        width: 50rem;
+        bottom: 10%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .people {
+        width: 40rem;
+        bottom: 20%;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .people {
+        width: 30rem;
+        bottom: 25%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    
+    .box {
+        bottom: 0;
+    }
+    
+    .people {
+        width: 22rem;
+        bottom: 15%;
+    }
+}
