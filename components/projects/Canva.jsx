@@ -13,6 +13,7 @@ const Canva = () => {
 
     const [projectClicked, onProjectClicked] = useState(null);
     const explainRef = useRef(null);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -37,7 +38,7 @@ const Canva = () => {
                     <ambientLight />
                     <ambientLight />
                     <ambientLight />
-                    <Mesh onProjectClick={onProjectClicked} />
+                    <Mesh onProjectClick={onProjectClicked} setOpen={setOpen} />
                     <EffectComposer>
                         <Bloom
                             mipmapBlur
@@ -49,6 +50,29 @@ const Canva = () => {
                 </Canvas>
             </div>
             <Image src={people} alt='People watching projects' className={styles.people} />
+            <div className={`${styles.detail} ${open ? "" : styles.close}`}>
+                <div onClick={() => {setOpen(false)}} className={styles.CrossIcon}>
+                    <span className={styles.line}></span>
+                    <span className={styles.line}></span>
+                </div>
+
+                <div className={styles.Content}>
+                    <h1 className={styles.head}> {projectClicked !== null ? projectClicked.title : ""} </h1>
+                    <div className={styles.Desc}> {projectClicked !== null ? projectClicked.description : ""} </div>
+                    <div className={styles.buttons}>
+                        {
+                            projectClicked !== null ? (
+                                projectClicked.github !== null ? <a href={projectClicked.github} className={styles.btnn}> github </a> : <p className={styles.reason}> {projectClicked.reason} </p>
+                            ) : ""
+                        }
+                        {
+                            projectClicked !== null ? (
+                                projectClicked.live !== null ? <a href={projectClicked.live} className={styles.btnn}> Live Link </a> : <p className={styles.reason}> {projectClicked.reason} </p>
+                            ) : ""
+                        }
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

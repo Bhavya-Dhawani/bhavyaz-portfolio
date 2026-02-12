@@ -6,11 +6,11 @@ import * as THREE from "three";
 
 const PROJECTS = [
     {
-        id: "The Og portfolio",
+        id: "The portfolio",
         from: 0.02,
         to: 0.24,
-        title: "The Portfolio",
-        description: "High-end design and branding websites.",
+        title: "The Og portfolio",
+        description: "A creative personal portfolio featuring 3D visuals and smooth animations. Built to showcase projects and skills in a unique, eye-catching way. The design emphasizes motion, interactivity, and modern web effects to create an immersive browsing experience while keeping performance optimized.",
         live: "https://bhavyaz-portfolio.vercel.app/",
         github: "https://github.com/Bhavya-is-great/bhavyaz-portfolio.git",
     },
@@ -19,16 +19,16 @@ const PROJECTS = [
         from: 0.27,
         to: 0.49,
         title: "A website for a cool Gym",
-        description: "Modern fitness and body transformation website.",
+        description: "A bold and energetic website created for a gym and fitness brand. The design highlights strength, motivation, and training services with strong visuals and a dynamic layout. Fully responsive and structured to attract new members, display programs, and provide essential information clearly.",
         live: "https://dole-shole.vercel.app/",
         github: "https://github.com/Bhavya-is-great/dole-shole.git",
     },
     {
-        id: "Jarvis - The og one!",
+        id: "A personal Ai Asistant.",
         from: 0.52,
         to: 0.74,
-        title: "A personal Ai Asistant.",
-        description: "Interactive WebGL orb animation project.",
+        title: "Jarvis - The og one!",
+        description: "A desktop-based personal AI assistant with an interactive graphical interface. JARVIS can handle tasks, respond to commands, and provide a smart, user-friendly experience. The project combines AI logic with a clean GUI to make interactions feel natural, fast, and visually engaging.",
         github: "https://github.com/Bhavya-is-great/jarvis.git",
         live: null,
         reason: "This is a Python GUI project so there is no live link so please Check github and install the app from there!",
@@ -38,7 +38,7 @@ const PROJECTS = [
         from: 0.77,
         to: 0.98,
         title: "A Animated cool website for a financer",
-        description: "Clean fintech platform with dashboards.",
+        description: "A modern business website built for a finance and loan service company. The site focuses on trust, clarity, and easy navigation so users can quickly understand services like loans, investments, and financial support. Designed with a clean layout, responsive design, and smooth user experience to work well on all devices.",
         live: "https://www.srkfinserv.com/",
         github: null,
         reason: "This website is made for a client so providing the open repo for it is not a good thing!"
@@ -47,7 +47,7 @@ const PROJECTS = [
 
 const DRAG_THRESHOLD = 8;
 
-const Mesh = ({ onProjectClick }) => {
+const Mesh = ({ onProjectClick, setOpen }) => {
     const texture = useTexture("/projects.png");
     const model = useRef();
     const { size } = useThree();
@@ -134,6 +134,7 @@ const Mesh = ({ onProjectClick }) => {
         if (!project) return;
 
         onProjectClick(project);
+        setOpen(true);
     };
 
     return (
