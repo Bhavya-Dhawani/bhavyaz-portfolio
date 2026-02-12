@@ -52,7 +52,7 @@
       rgba(0, 7, 40, 0.04) 60%,
       transparent 100%);
   filter: blur(10px);
-  z-index: 19;
+  z-index: -1;
 
 }
 

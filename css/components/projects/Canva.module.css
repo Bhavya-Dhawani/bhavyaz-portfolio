@@ -14,7 +14,7 @@
     top: 2rem;
     left: 2rem;
     transition: all 0.3s ease;
-    z-index: 99;
+    z-index: 299;
 }
 
 .back:hover {
@@ -46,6 +46,7 @@
     color: var(--base-font);
     font-size: 2rem;
     animation: hide 2s ease 2s;
+    text-align: center;
 }
 
 @keyframes hide {

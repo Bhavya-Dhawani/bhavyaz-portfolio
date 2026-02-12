@@ -18,7 +18,7 @@ const Canva = () => {
         setTimeout(() => {
             explainRef.current.remove();
         }, 3700);
-    });
+    }, []);
 
     return (
         <>

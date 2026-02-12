@@ -146,7 +146,7 @@
     }
 
     .canvas {
-        height: min(48vh, 320px);
+        height: min(48vh, 150px);
         width: 100%;
         max-width: none;
     }

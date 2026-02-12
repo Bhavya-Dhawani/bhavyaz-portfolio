@@ -39,95 +39,95 @@ export default function Technologies() {
     if (el && !itemsRef.current.includes(el)) itemsRef.current.push(el);
   }, []);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=300%",
-          scrub: 0.6,
-          pin: true,
-        },
-      });
+  // useEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   const ctx = gsap.context(() => {
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: containerRef.current,
+  //         start: "top top",
+  //         end: "+=300%",
+  //         scrub: 0.6,
+  //         pin: true,
+  //       },
+  //     });
 
-      tl.from(itemsRef.current, {
-        y: 80,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
-      }).to(
-        itemsRef.current,
-        {
-          scale: 0.9,
-          opacity: 0.6,
-          stagger: 0.02,
-          duration: 0.6,
-        },
-        "+=0.6"
-      );
-    }, containerRef);
+  //     tl.from(itemsRef.current, {
+  //       y: 80,
+  //       opacity: 0,
+  //       stagger: 0.12,
+  //       duration: 0.8,
+  //       ease: "power3.out",
+  //     }).to(
+  //       itemsRef.current,
+  //       {
+  //         scale: 0.9,
+  //         opacity: 0.6,
+  //         stagger: 0.02,
+  //         duration: 0.6,
+  //       },
+  //       "+=0.6"
+  //     );
+  //   }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+  //   return () => ctx.revert();
+  // }, []);
 
-  useEffect(() => {
-    const adjustLine = () => {
-      if (!gridRef.current || !svgRef.current || !containerRef.current) return;
-      const gridRect = gridRef.current.getBoundingClientRect();
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const offset = 40;
-      const y = gridRect.bottom - containerRect.top + offset;
-      svgRef.current.style.top = `${y}px`;
-    };
+  // useEffect(() => {
+  //   const adjustLine = () => {
+  //     if (!gridRef.current || !svgRef.current || !containerRef.current) return;
+  //     const gridRect = gridRef.current.getBoundingClientRect();
+  //     const containerRect = containerRef.current.getBoundingClientRect();
+  //     const offset = 40;
+  //     const y = gridRect.bottom - containerRect.top + offset;
+  //     svgRef.current.style.top = `${y}px`;
+  //   };
 
-    adjustLine();
-    window.addEventListener("resize", adjustLine);
-    return () => window.removeEventListener("resize", adjustLine);
-  }, []);
+  //   adjustLine();
+  //   window.addEventListener("resize", adjustLine);
+  //   return () => window.removeEventListener("resize", adjustLine);
+  // }, []);
 
-  useEffect(() => {
-    const pathEl = pathRef.current;
-    if (pathEl) originalD.current = pathEl.getAttribute("d") || originalD.current;
-  }, []);
+  // useEffect(() => {
+  //   const pathEl = pathRef.current;
+  //   if (pathEl) originalD.current = pathEl.getAttribute("d") || originalD.current;
+  // }, []);
 
-  const mapRange = (inMin, inMax, outMin, outMax, value) =>
-    outMin + ((value - inMin) * (outMax - outMin)) / (inMax - inMin);
+  // const mapRange = (inMin, inMax, outMin, outMax, value) =>
+  //   outMin + ((value - inMin) * (outMax - outMin)) / (inMax - inMin);
 
-  const handleMouseMove = (e) => {
-    const svgEl = svgRef.current;
-    const pathEl = pathRef.current;
-    if (!svgEl || !pathEl) return;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  // const handleMouseMove = (e) => {
+  //   const svgEl = svgRef.current;
+  //   const pathEl = pathRef.current;
+  //   if (!svgEl || !pathEl) return;
+  //   if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-    const rect = svgEl.getBoundingClientRect();
-    const localX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const localY = Math.max(0, Math.min(e.clientY - rect.top, rect.height));
-    const cx = Math.round(mapRange(0, rect.width, 150, 850, localX));
-    const cy = Math.round(mapRange(0, rect.height, 40, 180, localY));
-    const newD = `M 50 100 Q ${cx} ${cy} 950 100`;
+  //   const rect = svgEl.getBoundingClientRect();
+  //   const localX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+  //   const localY = Math.max(0, Math.min(e.clientY - rect.top, rect.height));
+  //   const cx = Math.round(mapRange(0, rect.width, 150, 850, localX));
+  //   const cy = Math.round(mapRange(0, rect.height, 40, 180, localY));
+  //   const newD = `M 50 100 Q ${cx} ${cy} 950 100`;
 
-    rafRef.current = requestAnimationFrame(() => {
-      gsap.to(pathEl, {
-        attr: { d: newD },
-        duration: 0.25,
-        ease: "power2.out",
-      });
-    });
-  };
+  //   rafRef.current = requestAnimationFrame(() => {
+  //     gsap.to(pathEl, {
+  //       attr: { d: newD },
+  //       duration: 0.25,
+  //       ease: "power2.out",
+  //     });
+  //   });
+  // };
 
-  const handleMouseLeave = () => {
-    const pathEl = pathRef.current;
-    if (!pathEl) return;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    gsap.to(pathEl, {
-      attr: { d: originalD.current },
-      duration: 1.2,
-      ease: "elastic.out(1, 0.2)",
-    });
-  };
+  // const handleMouseLeave = () => {
+  //   const pathEl = pathRef.current;
+  //   if (!pathEl) return;
+  //   if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  //   gsap.to(pathEl, {
+  //     attr: { d: originalD.current },
+  //     duration: 1.2,
+  //     ease: "elastic.out(1, 0.2)",
+  //   });
+  // };
 
   return (
     <section className={styles.tech} ref={containerRef} id="tech">

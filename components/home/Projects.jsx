@@ -10,7 +10,7 @@ const Projects = () => {
             <ParallaxScroll />
             <section className={styles.projects} id='projects'>
                 <h1 className={styles.head}>Projects</h1>
-                <Link data-scroll-speed="0.05" className={styles.exp} href={'/projects'}>Enter the Experience</Link>
+                <Link className={styles.exp} href={'/projects'}>Enter the Experience</Link>
                 <div className={styles.light}></div>
             </section>
         </>
