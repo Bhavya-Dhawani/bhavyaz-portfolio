@@ -105,6 +105,29 @@
     align-items: center;
 }
 
+.error {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    padding-left: 0.25rem;
+}
+
+.successMessage {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-colorl);
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .input {
     background: var(--bg-colorl);
     outline: none;
